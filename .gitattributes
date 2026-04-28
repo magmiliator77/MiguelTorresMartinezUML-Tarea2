@@ -1,0 +1,9 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Tratar .mdj y .puml como texto (son JSON / texto plano)
+*.mdj text eol=lf
+*.puml text eol=lf
+
+# PNG como binario
+*.png binary

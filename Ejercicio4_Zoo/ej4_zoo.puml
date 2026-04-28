@@ -1,0 +1,75 @@
+@startuml Ejercicio4_Zoo
+title Ejercicio 4 - Zoo\nMiguel Torres Martínez - 1ºA DAW - IES Celia Viñas
+
+skinparam classAttributeIconSize 0
+skinparam classFontSize 13
+skinparam classFontStyle bold
+skinparam shadowing false
+skinparam classBackgroundColor #FEFEFE
+skinparam classBorderColor #1f4e79
+skinparam classArrowColor #1f4e79
+skinparam classHeaderBackgroundColor #d9e7f5
+skinparam linetype ortho
+
+abstract class Empleado {
+  - nombre : String
+  - direccion : String
+  - telefono : String
+  - fechaIngreso : Date
+}
+
+class Cuidador {
+}
+
+class Guia {
+}
+
+class Especie {
+  - nombreEspanol : String
+  - nombreCientifico : String
+  - descripcion : String
+}
+
+class Habitat {
+  - nombre : String
+  - clima : String
+  - vegetacion : String
+  - continentes : String[*]
+}
+
+class Zona {
+  - nombre : String
+  - extension : double
+}
+
+class Itinerario {
+  - codigo : String
+  - duracion : int
+  - longitud : double
+  - maxVisitantes : int
+  - / numEspecies : int
+}
+
+class ACargo <<association class>> {
+  - fecha : Date
+}
+
+class Asignacion <<association class>> {
+  - hora : Time
+}
+
+Empleado <|-- Cuidador
+Empleado <|-- Guia
+
+Especie "0..*" -- "1..*" Habitat : vive_en >
+Especie "0..*" -- "1" Zona : esta_en >
+
+Itinerario "0..*" -- "1..*" Zona : recorre >
+
+Cuidador "0..*" -- "1..*" Especie
+(Cuidador, Especie) .. ACargo
+
+Guia "1..*" -- "0..*" Itinerario
+(Guia, Itinerario) .. Asignacion
+
+@enduml

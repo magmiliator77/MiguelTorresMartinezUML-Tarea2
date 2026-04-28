@@ -1,0 +1,73 @@
+@startuml Ejercicio2_ReservasHotel
+title Ejercicio 2 - Reservas Hotel\nMiguel Torres Martínez - 1ºA DAW - IES Celia Viñas
+
+skinparam classAttributeIconSize 0
+skinparam classFontSize 13
+skinparam classFontStyle bold
+skinparam shadowing false
+skinparam classBackgroundColor #FEFEFE
+skinparam classBorderColor #1f4e79
+skinparam classArrowColor #1f4e79
+skinparam classHeaderBackgroundColor #d9e7f5
+skinparam linetype ortho
+
+class Hotel {
+  - codigo : String
+  - nombre : String
+  - direccion : String
+  - telefono : String
+}
+
+abstract class Habitacion {
+  - numero : int
+  - estado : String
+  - numeroCamas : int
+}
+
+class Suite {
+  - metros : double
+  - servicios : String
+  + calculoGastos() : double
+}
+
+class Individual {
+  - categoria : String
+  + calculoRebaja() : double
+}
+
+class Doble {
+  - minibar : boolean
+  - extra : String
+}
+
+class Cliente {
+  - numeroCliente : String
+  - nombre : String
+  - telefono : String
+}
+
+class Reserva {
+  - numero : String
+  - fechaEntrada : Date
+  - fechaSalida : Date
+  - numeroPersonas : int
+}
+
+class Factura {
+  - numero : String
+  - fecha : Date
+  - importe : double
+  - IVA : double
+}
+
+Hotel "1" *-- "1..*" Habitacion : compuesto_por >
+
+Habitacion <|-- Suite
+Habitacion <|-- Individual
+Habitacion <|-- Doble
+
+Habitacion "1" -- "0..*" Reserva : reservada_en >
+Cliente "1" -- "0..*" Reserva : realiza >
+Reserva "1" -- "0..1" Factura : genera >
+
+@enduml

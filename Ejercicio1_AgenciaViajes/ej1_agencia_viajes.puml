@@ -1,0 +1,73 @@
+@startuml Ejercicio1_AgenciaViajes
+title Ejercicio 1 - Agencia de Viajes II\nMiguel Torres Martínez - 1ºA DAW - IES Celia Viñas
+
+skinparam classAttributeIconSize 0
+skinparam classFontSize 13
+skinparam classFontStyle bold
+skinparam shadowing false
+skinparam classBackgroundColor #FEFEFE
+skinparam classBorderColor #1f4e79
+skinparam classArrowColor #1f4e79
+skinparam classHeaderBackgroundColor #d9e7f5
+skinparam linetype ortho
+
+class CadenaAgencias {
+}
+
+class Sucursal {
+  - codigoSucursal : String
+  - direccion : String
+  - telefono : String
+}
+
+class Hotel {
+  - codigoHotel : String
+  - nombre : String
+  - direccion : String
+  - ciudad : String
+  - telefono : String
+  - plazasDisponibles : int
+}
+
+class Vuelo {
+  - numeroVuelo : String
+  - fechaHora : Date
+  - origen : String
+  - destino : String
+  - plazasTotales : int
+  - plazasClaseTurista : int
+}
+
+class Turista {
+  - codigoTurista : String
+  - nombre : String
+  - apellidos : String
+  - direccion : String
+  - telefono : String
+}
+
+class Reserva <<association class>> {
+  - clase : String
+}
+note right of Reserva : clase = {turista, primera}
+
+class Hospedaje <<association class>> {
+  - regimen : String
+  - fechaLlegada : Date
+  - fechaPartida : Date
+}
+note right of Hospedaje : regimen = {mediaPension,\npensionCompleta}
+
+CadenaAgencias "1" *-- "1..*" Sucursal : compuesta_por >
+CadenaAgencias "1" -- "0..*" Hotel : contrata >
+CadenaAgencias "1" -- "0..*" Vuelo : contrata >
+
+Turista "0..*" -- "1" Sucursal : contrata_en >
+
+Turista "0..*" -- "0..*" Vuelo
+(Turista, Vuelo) .. Reserva
+
+Turista "0..*" -- "0..*" Hotel
+(Turista, Hotel) .. Hospedaje
+
+@enduml

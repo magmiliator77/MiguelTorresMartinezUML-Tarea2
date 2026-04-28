@@ -1,0 +1,12 @@
+# StarUML
+*.mdj.bak
+*~
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IntelliJ / VS Code (por si acaso)
+.idea/
+.vscode/

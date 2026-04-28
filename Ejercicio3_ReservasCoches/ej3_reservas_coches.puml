@@ -1,0 +1,63 @@
+@startuml Ejercicio3_ReservasCoches
+title Ejercicio 3 - Reservas de Coches\nMiguel Torres Martínez - 1ºA DAW - IES Celia Viñas
+
+skinparam classAttributeIconSize 0
+skinparam classFontSize 13
+skinparam classFontStyle bold
+skinparam shadowing false
+skinparam classBackgroundColor #FEFEFE
+skinparam classBorderColor #1f4e79
+skinparam classArrowColor #1f4e79
+skinparam classHeaderBackgroundColor #d9e7f5
+skinparam linetype ortho
+
+class Cliente {
+  - codigo : String <<PK>>
+  - DNI : String
+  - nombre : String
+  - direccion : String
+  - telefono : String
+}
+
+class Reserva {
+  - fechaInicio : Date
+  - fechaFinal : Date
+  - precioTotal : double
+  - entregados : boolean
+}
+
+class Coche {
+  - matricula : String
+  - modelo : String
+  - color : String
+  - marca : String
+}
+
+class Garaje {
+  - codigo : String
+  - direccion : String
+}
+
+class Agencia {
+  - codigo : String
+  - nombre : String
+  - direccion : String
+}
+
+class LineaReserva <<association class>> {
+  - precioAlquiler : double
+  - litrosGasolina : double
+}
+
+Cliente "1" -- "0..*" Reserva : realiza >
+
+Cliente "0..1" -- "0..*" Cliente : avala >
+
+Reserva "0..*" -- "1..*" Coche
+(Reserva, Coche) .. LineaReserva
+
+Coche "0..*" -- "1" Garaje : asignado_a > {frozen}
+
+Reserva "0..*" -- "1" Agencia : se_realiza_en >
+
+@enduml

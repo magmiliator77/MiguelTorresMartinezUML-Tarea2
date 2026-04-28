@@ -86,31 +86,6 @@ Cada carpeta contiene:
 
 ---
 
-## Cómo abrir los `.mdj` en StarUML
-
-Cada `.mdj` ya trae el **modelo completo** (clases, atributos, operaciones,
-asociaciones con multiplicidades, generalizaciones y clases de asociación)
-**y el diagrama de clases dibujado**. Solo hace falta:
-
-1. Abrir el archivo en StarUML: `File > Open...` y seleccionar el `.mdj`.
-2. En **Working Diagrams** o haciendo doble clic sobre el diagrama `Main`
-   en el Model Explorer, se abre el diagrama con las clases y las
-   relaciones ya posicionadas.
-3. Si el layout automático no se ve perfecto, puedes arrastrar las clases
-   para reorganizarlas. Los `.png` de cada carpeta sirven como
-   referencia del layout final pulido.
-4. Para exportar a imagen desde StarUML: `File > Export Diagram As > PNG`.
-
-> **Nota sobre clases de asociación:** `Reserva`, `Hospedaje`, `LineaReserva`,
-> `ACargo` y `Asignacion` están en el modelo como clases normales con un
-> vínculo `«association class»` hacia su asociación correspondiente. Si se
-> quiere mostrar visualmente la línea discontinua entre la clase y la
-> asociación (notación clásica de clase de asociación), basta con
-> seleccionar la asociación y la clase en el diagrama y aplicar
-> `Format > Connect as Association Class`.
-
----
-
 ## Tarea 1 (parte previa)
 
 La parte 1 de los ejercicios UML está en este otro repositorio:
